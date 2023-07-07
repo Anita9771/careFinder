@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,9 +14,30 @@
     "@types/node": "^16.18.36",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
+    "babel-plugin-macros": "^3.1.0",
+    "boxicons": "^2.1.4",
+    "csv-stringify": "^6.4.0",
+    "export-from-json": "^1.7.2",
+    "firebase": "^9.22.2",
+    "geofire-common": "^6.0.0",
+    "geofirex": "^0.1.0",
+    "google-map-react": "^2.2.1",
+    "jspdf": "^2.5.1",
+    "nodemailer": "^6.9.3",
+    "papaparse": "^5.4.1",
+    "quilljs": "^0.18.1",
+    "quilljs-markdown": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-geolocation": "^1.0.4",
+    "react-loader-spinner": "^5.3.4",
+    "react-map-gl": "^7.0.25",
+    "react-pdf": "^7.1.2",
+    "react-quill": "^2.0.0",
+    "react-router-dom": "^6.12.1",
     "react-scripts": "5.0.1",
+    "react-share": "^4.4.1",
+    "styled-components": "^5.3.11",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -32,12 +57,24 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "not safari < 10",
+      "not chrome < 51",
+      "not android < 5",
+      "not ie < 12"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "babel-plugin-macros.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

@@ -1,0 +1,106 @@
+.container {
+    background-color: #e0e4ec;
+    border-top: 5px solid #9393f7;
+    min-height: 90vh;
+    overflow-y: hidden;
+  }
+  
+  .hospital-address {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  h1 {
+    color: #333;
+    font-size: 24px;
+    margin: 20px;
+    text-align: center;
+  }
+  
+  p {
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .hospital-form {
+    margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    color: #333;
+    font-size: 16px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .address-input {
+    margin-top: 15px;
+    height: 200px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+  }
+  
+  button {
+    background-color: #9393f7;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .user-email {
+    font-weight: bold;
+  }
+  
+  /* Media queries for different breakpoints */
+  @media screen and (min-width: 320px) {
+    /* Styles for 320px breakpoint */
+    .hospital-form {
+      margin-top: 10px;
+    }
+  }
+  
+  @media screen and (min-width: 480px) {
+    /* Styles for 480px breakpoint */
+    .hospital-form {
+      margin-top: 15px;
+    }
+  }
+  
+  @media screen and (min-width: 768px) {
+    /* Styles for 768px breakpoint */
+    .container {
+      padding: 20px;
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    /* Styles for 1024px breakpoint */
+    .container, h1, p {
+      /* max-width: 800px; */
+      margin: 0 auto;
+    }
+
+    .hospital-form{
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+}
+  

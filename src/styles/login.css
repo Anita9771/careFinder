@@ -1,0 +1,81 @@
+.login{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    z-index: 9;
+    background: #F2F2F2;
+    width: 45%;
+    height: 90vh;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.login h1{
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 10%;
+    color: #333333;
+    padding-bottom: 1rem;
+}
+
+.login p{
+    text-align: center;
+    font-weight: bold;
+}
+
+.login form{
+    /* margin-top: 10%; */
+    display: flex;
+    flex-direction: column;
+}
+
+.login form section{
+    margin-top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-left: 5%;
+}
+
+.login form input{
+    width: 90%;
+    height: 3rem;
+    border: none;
+    border-radius: 12px;
+    padding-left: 10px;
+    /* margin-top: 2%; */
+    background: #E0E4EC;
+    opacity: 0.5;
+}
+
+.login form label{
+    font-size: 1.2rem;
+    margin-bottom: 2%;
+    font-weight: bold;
+}
+
+.login .bottom{
+    text-align: center;
+}
+
+.login .bottom p{
+    margin: 2.5% 0;
+
+}
+
+.login .bottom .last{
+    font-weight: normal;
+}
+
+.login .itl{
+    text-decoration: none;
+    color: #3a75f4;
+}
+
+@media screen and (max-width: 1023px) {
+    .login{
+        width: 90%;
+        height: 95vh;
+    }
+}
