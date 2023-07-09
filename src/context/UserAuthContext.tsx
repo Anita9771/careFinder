@@ -142,7 +142,7 @@ export function UserAuthContextProvider({ children }: { children: React.ReactNod
   }, []);
 
   return (
-    <userAuthContext.Provider value={{ signUp, logIn, user, logOut, googleSignIn, resetPassword }}>
+    <userAuthContext.Provider value={{ signUp, logIn, user, logOut, googleSignIn, resetPassword, }}>
       {children}
     </userAuthContext.Provider>
   );

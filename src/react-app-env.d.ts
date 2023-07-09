@@ -6,6 +6,6 @@ declare module 'papaparse'
 declare module 'react-geolocation'
 declare module 'google-map-react'
 declare module 'csv-stringify/.'
-// declare module 'nodemailer'
-// declare module 'boxicons'
+declare module 'react-helmet'
+declare module 'enzyme'
 

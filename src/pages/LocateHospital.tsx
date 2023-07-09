@@ -1,33 +1,16 @@
 import React, { useEffect, useState } from "react";
 // import { firestore } from './firebaseConfig';
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import mapboxgl from "mapbox-gl";
-import { NewHospitalType } from "../types/hospitals";
-import { hospitalsCol } from "../lib/controller";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { GeoFireQuery } from "geofirex";
-// import { geofire } from "geofire-common"
-import { Geohash } from "geofire-common";
 import { db } from "../lib/firebase";
 import {
-  DocumentData,
   getDocs,
-  onSnapshot,
   orderBy,
   query,
-  QuerySnapshot,
   where,
-  doc,
-  updateDoc,
   collection,
-  GeoPoint,
 } from "firebase/firestore";
-// import { GeoPoint } from "../types/hospitals";
-
-// import {  } from "firebase/firestore";
-import ReactMapGL, { Marker } from "react-map-gl";
-import { geohashQueryBounds, distanceBetween, Geopoint } from "geofire-common";
 import { NavbarMain } from "../components";
 
 const geofire = require("geofire-common");
@@ -43,13 +26,12 @@ const MainHeroDiv = styled.div`
 // `${process.env.REACT_APP_MAP_API_KEY}`
 
 function LocateHospital() {
-  const [currentLocation, setCurrentLocation] = useState(null);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [markers, setMarkers] = useState<any[]>([]);
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
 
-  const currentLocationHash = geofire.geohashForLocation([latitude, longitude]);
+  // const currentLocationHash = geofire.geohashForLocation([latitude, longitude]);
   const center = [latitude, longitude];
   const radiusInM = 50 * 1000;
 
@@ -127,11 +109,11 @@ function LocateHospital() {
       zoom: 5,
     });
 
-    setTimeout(() => {
-      alert(
-        "Markers identifies hospitals that are 50km from your current location. Click on a marker to see the name."
-      );
-    }, 5000);
+    // setTimeout(() => {
+    //   alert(
+    //     "Markers identifies hospitals that are 50km from your current location. Click on a marker to see the name."
+    //   );
+    // }, 5000);
 
     setMap(initializedMap);
 
@@ -143,6 +125,7 @@ function LocateHospital() {
     };
   }, []);
 
+ useEffect(() => {
   if (map && latitude !== 0 && longitude !== 0) {
     markers.forEach((marker) => {
       new mapboxgl.Marker()
@@ -151,6 +134,7 @@ function LocateHospital() {
         .addTo(map);
     });
   }
+ }, [map, latitude, longitude, markers ])
 
   return (
     <>

@@ -49,7 +49,7 @@ function Login() {
     
     try {
       await logIn(email, password);
-      navigate('/add-hospital');
+      navigate('/hospital-list');
     } catch (err: any) {
       setError(err.message);
       alert(error);
@@ -57,7 +57,7 @@ function Login() {
 
 
     
-    localStorage.removeItem('signupData');
+    // localStorage.removeItem('signupData');
   }
 
   const handleGoogleSignIn = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {

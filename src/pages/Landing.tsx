@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import "../styles/landing.css";
 import HeroImg from "../assets/images/nurse-n-patient.png";
 import CheckeredMan from "../assets/images/blue.png";
 import DoctorChecking from "../assets/images/doctor-bp.png";
 import HospitalIcon from "../assets/images/hospital-icon.png";
-import ShareIcon from "../assets/images/share-icon.png";
-import ExportIcon from "../assets/images/export-icon.png";
-import DoctorIcon from "../assets/images/doctor-icon.png";
 import FindHospital from "../assets/images/appointment.png";
 import ShareHospital from "../assets/images/share.png";
 import VisitHospital from "../assets/images/visit.png";
@@ -18,16 +15,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useNavigate } from "react-router-dom";
-import { hospitalsCol } from "../lib/controller";
-import {
-  DocumentData,
-  getDoc,
-  onSnapshot,
-  QuerySnapshot,
-} from "firebase/firestore";
 import { NewHospitalType } from "../types/hospitals";
-import { doc, updateDoc, collection } from "firebase/firestore";
-import { db } from "../lib/firebase";
 import { NavbarMain } from "../components";
 
 const Button = styled.button`
@@ -52,7 +40,7 @@ const geofire = require("geofire-common");
 
 function Landing() {
   const [search, setSearch] = useState<string>("");
-  const [hospitals, setHospitals] = useState<NewHospitalType[]>([]);
+  // const [hospitals, setHospitals] = useState<NewHospitalType[]>([]);
 
   const navigate = useNavigate();
 
@@ -64,64 +52,7 @@ function Landing() {
       navigate("/search-region", { state: { myData: search } });
     }
   };
-  useEffect(() => {
-    onSnapshot(hospitalsCol, (snapshot: QuerySnapshot<DocumentData>) => {
-      setHospitals(
-        snapshot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        })
-      );
-    });
-
-    const updateGeohashForHospitals = async (hospitals: string | any[]) => {
-      const updateNextHospital = async (index: number) => {
-        if (index >= hospitals.length) {
-        //   // All hospitals have been updated
-        //   console.log("Geohashes updated for all hospitals");
-          return;
-        }
-
-        const hospital = hospitals[index];
-        let lat = hospital?.lat;
-        let lng = hospital?.lng;
-        const id = hospital?.id;
-
-        console.log(lat, lng, id);
-
-        const hashToStore = geofire?.geohashForLocation([+lat, +lng]);
-        console.log("Updating geohash for hospital:", id);
-
-        try {
-          const docRef = doc(collection(db, "hospitals"), id);
-          const docSnapshot = await getDoc(docRef);
-
-          if (docSnapshot.exists()) {
-            await updateDoc(docRef, { geohash: hashToStore });
-            console.log("Geohash updated successfully for hospital:", id);
-          } else {
-            console.log("Hospital document not found:", id);
-          }
-        } catch (error) {
-          console.error("Error updating geohash:", error);
-        }
-
-        // Update the next hospital
-        await updateNextHospital(index + 1);
-      };
-
-      // Start updating the first hospital
-      await updateNextHospital(0);
-    };
-
-    // setTimeout(() => {
-    updateGeohashForHospitals(hospitals);
-    // alert("please")
-    // }, 5000);
-  }, []);
-  // console.log(hospitals)
+  
 
   return (
     <div id="home" className="landing">
@@ -399,6 +330,68 @@ function Landing() {
 }
 
 export default Landing;
-function async(id: any, arg1: string, hashToStore: any) {
-  throw new Error("Function not implemented.");
-}
+
+
+// function async(id: any, arg1: string, hashToStore: any) {
+//   throw new Error("Function not implemented.");
+// }
+
+
+// useEffect(() => {
+  //   onSnapshot(hospitalsCol, (snapshot: QuerySnapshot<DocumentData>) => {
+  //     setHospitals(
+  //       snapshot.docs.map((doc) => {
+  //         return {
+  //           id: doc.id,
+  //           ...doc.data(),
+  //         };
+  //       })
+  //     );
+  //   });
+
+  //   const updateGeohashForHospitals = async (hospitals: string | any[]) => {
+  //     const updateNextHospital = async (index: number) => {
+  //       if (index >= hospitals.length) {
+  //       //   // All hospitals have been updated
+  //       //   console.log("Geohashes updated for all hospitals");
+  //         return;
+  //       }
+
+  //       const hospital = hospitals[index];
+  //       let lat = hospital?.lat;
+  //       let lng = hospital?.lng;
+  //       const id = hospital?.id;
+
+  //       console.log(lat, lng, id);
+
+  //       const hashToStore = geofire?.geohashForLocation([+lat, +lng]);
+  //       console.log("Updating geohash for hospital:", id);
+
+  //       try {
+  //         const docRef = doc(collection(db, "hospitals"), id);
+  //         const docSnapshot = await getDoc(docRef);
+
+  //         if (docSnapshot.exists()) {
+  //           await updateDoc(docRef, { geohash: hashToStore });
+  //           console.log("Geohash updated successfully for hospital:", id);
+  //         } else {
+  //           console.log("Hospital document not found:", id);
+  //         }
+  //       } catch (error) {
+  //         console.error("Error updating geohash:", error);
+  //       }
+
+  //       // Update the next hospital
+  //       await updateNextHospital(index + 1);
+  //     };
+
+  //     // Start updating the first hospital
+  //     await updateNextHospital(0);
+  //   };
+
+  //   // setTimeout(() => {
+  //   updateGeohashForHospitals(hospitals);
+  //   // alert("please")
+  //   // }, 5000);
+  // }, []);
+  // console.log(hospitals)
