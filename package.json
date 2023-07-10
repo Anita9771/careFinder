@@ -10,12 +10,10 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
     "@types/node": "^16.18.36",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
     "babel-plugin-macros": "^3.1.0",
-    "enzyme": "^3.11.0",
     "firebase": "^9.22.2",
     "geofire-common": "^6.0.0",
     "papaparse": "^5.4.1",
@@ -63,11 +61,36 @@
     ]
   },
   "jest": {
-    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.tsx?$"
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "transform": {
+      "^.+\\.tsx?$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/",
+      "\\.p\\(n?g\\)$",
+      "\\.c\\(s?s\\)$"
+    ],
+    "moduleNameMapper": {
+      "\\.(png|jpg|jpeg|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "testEnvironment": "jsdom"
   },
   "devDependencies": {
+    "@babel/core": "^7.22.8",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.22.5",
+    "@babel/preset-env": "^7.22.7",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@jest/globals": "^29.6.1",
+    "@types/jest": "^29.5.2",
     "@types/styled-components": "^5.1.26",
-    "jest": "^27.5.1"
+    "babel-jest": "^29.6.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.7",
+    "jest": "^27.5.1",
+    "ts-jest": "^29.1.1"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "babel-plugin-macros.config.js",

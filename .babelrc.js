@@ -1,20 +1,19 @@
-module.exports = (api) => {
-    // Configure caching options here
-    api.cache.forever(); // Enable caching
+module.exports = function (api) {
+    api.cache.forever();
+    return {
+      presets: ["@babel/preset-env", "@babel/preset-react", '@babel/preset-typescript'],
+      plugins: [
+        "macros",
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-transform-modules-commonjs",
+      ]
+    };
   
-    // Rest of your Babel configuration
-    const presets = [
-        '@babel/preset-env',
-        '@babel/preset-react',
-      ];
-    
-      const plugins = [
-        'babel-jest',
-      ];
-    
-      return {
+    return {
         presets,
         plugins,
       };
   };
+  
+   
   

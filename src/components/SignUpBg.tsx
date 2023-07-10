@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/sign-up-bg.css";
 import SignUpBgImg from "../assets/images/sign-up-bg-three.png";
 import SignUpBgImgTwo from "../assets/images/sign-up-bg-two.png";
+import "../styles/sign-up-bg.css";
 function SignUpBg() {
   return (
     <div className="sign-up-bg">

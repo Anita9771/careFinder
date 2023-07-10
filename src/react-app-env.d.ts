@@ -8,4 +8,5 @@ declare module 'google-map-react'
 declare module 'csv-stringify/.'
 declare module 'react-helmet'
 declare module 'enzyme'
+declare module "enzyme-adapter-react-16"
 

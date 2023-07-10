@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import "../styles/landing.css";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { useNavigate } from "react-router-dom";
+import { NavbarMain } from "../components";
 import HeroImg from "../assets/images/nurse-n-patient.png";
 import CheckeredMan from "../assets/images/blue.png";
 import DoctorChecking from "../assets/images/doctor-bp.png";
@@ -11,12 +15,7 @@ import VisitHospital from "../assets/images/visit.png";
 import Sarah from "../assets/images/sarah.png";
 import John from "../assets/images/john.png";
 import Emily from "../assets/images/emily.png";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { useNavigate } from "react-router-dom";
-import { NewHospitalType } from "../types/hospitals";
-import { NavbarMain } from "../components";
+import "../styles/landing.css";
 
 const Button = styled.button`
   border: none;
@@ -52,7 +51,6 @@ function Landing() {
       navigate("/search-region", { state: { myData: search } });
     }
   };
-  
 
   return (
     <div id="home" className="landing">
@@ -104,13 +102,20 @@ function Landing() {
             icon={icon({ name: "location-dot", style: "solid" })}
             className="map-icon"
           /> */}
-        
-            <FontAwesomeIcon
-            onClick={handleSearch} 
-            style={{ color: "black", border:"1px solid grey", padding: "1rem", borderRadius: "0.2rem", opacity: "0.7", marginBottom:"1rem" }}
-              icon={icon({ name: "magnifying-glass", style: "solid" })}
-              className="search-icon"
-            />
+
+          <FontAwesomeIcon
+            onClick={handleSearch}
+            style={{
+              color: "black",
+              border: "1px solid grey",
+              padding: "1rem",
+              borderRadius: "0.2rem",
+              opacity: "0.7",
+              marginBottom: "1rem",
+            }}
+            icon={icon({ name: "magnifying-glass", style: "solid" })}
+            className="search-icon"
+          />
           <p>
             None in your region?{" "}
             <Link to="/hospital-list">
@@ -154,10 +159,10 @@ function Landing() {
         <div className="card">
           <Link to="/locate-hospital">
             <div className="card-icon">
-            <FontAwesomeIcon
-            icon={icon({ name: "location-dot", style: "solid" })}
-            className="map-icon"
-          />
+              <FontAwesomeIcon
+                icon={icon({ name: "location-dot", style: "solid" })}
+                className="map-icon"
+              />
             </div>
             <h4>Locate Hospitals</h4>
             <p>Effortlessly find the hospitals within your current location</p>
@@ -177,7 +182,7 @@ function Landing() {
         <div className="card">
           <Link to="/hospital-list">
             <div className="card-icon">
-            <img src={HospitalIcon} alt="icon" />
+              <img src={HospitalIcon} alt="icon" />
             </div>
             <h4>View All Hospitals</h4>
             <p>View all hospitals available on our platform or in a region</p>
@@ -187,12 +192,12 @@ function Landing() {
         <div className="card">
           <a href="#search">
             <div className="card-icon">
-            <FontAwesomeIcon
-            onClick={handleSearch} 
-            style={{ color: "black" }}
-              icon={icon({ name: "magnifying-glass", style: "solid" })}
-              className="search-icon"
-            />
+              <FontAwesomeIcon
+                onClick={handleSearch}
+                style={{ color: "black" }}
+                icon={icon({ name: "magnifying-glass", style: "solid" })}
+                className="search-icon"
+              />
             </div>
             <h4>Search Region</h4>
             <p>Search for a hospital in a particular region</p>
@@ -331,67 +336,65 @@ function Landing() {
 
 export default Landing;
 
-
 // function async(id: any, arg1: string, hashToStore: any) {
 //   throw new Error("Function not implemented.");
 // }
 
-
 // useEffect(() => {
-  //   onSnapshot(hospitalsCol, (snapshot: QuerySnapshot<DocumentData>) => {
-  //     setHospitals(
-  //       snapshot.docs.map((doc) => {
-  //         return {
-  //           id: doc.id,
-  //           ...doc.data(),
-  //         };
-  //       })
-  //     );
-  //   });
+//   onSnapshot(hospitalsCol, (snapshot: QuerySnapshot<DocumentData>) => {
+//     setHospitals(
+//       snapshot.docs.map((doc) => {
+//         return {
+//           id: doc.id,
+//           ...doc.data(),
+//         };
+//       })
+//     );
+//   });
 
-  //   const updateGeohashForHospitals = async (hospitals: string | any[]) => {
-  //     const updateNextHospital = async (index: number) => {
-  //       if (index >= hospitals.length) {
-  //       //   // All hospitals have been updated
-  //       //   console.log("Geohashes updated for all hospitals");
-  //         return;
-  //       }
+//   const updateGeohashForHospitals = async (hospitals: string | any[]) => {
+//     const updateNextHospital = async (index: number) => {
+//       if (index >= hospitals.length) {
+//       //   // All hospitals have been updated
+//       //   console.log("Geohashes updated for all hospitals");
+//         return;
+//       }
 
-  //       const hospital = hospitals[index];
-  //       let lat = hospital?.lat;
-  //       let lng = hospital?.lng;
-  //       const id = hospital?.id;
+//       const hospital = hospitals[index];
+//       let lat = hospital?.lat;
+//       let lng = hospital?.lng;
+//       const id = hospital?.id;
 
-  //       console.log(lat, lng, id);
+//       console.log(lat, lng, id);
 
-  //       const hashToStore = geofire?.geohashForLocation([+lat, +lng]);
-  //       console.log("Updating geohash for hospital:", id);
+//       const hashToStore = geofire?.geohashForLocation([+lat, +lng]);
+//       console.log("Updating geohash for hospital:", id);
 
-  //       try {
-  //         const docRef = doc(collection(db, "hospitals"), id);
-  //         const docSnapshot = await getDoc(docRef);
+//       try {
+//         const docRef = doc(collection(db, "hospitals"), id);
+//         const docSnapshot = await getDoc(docRef);
 
-  //         if (docSnapshot.exists()) {
-  //           await updateDoc(docRef, { geohash: hashToStore });
-  //           console.log("Geohash updated successfully for hospital:", id);
-  //         } else {
-  //           console.log("Hospital document not found:", id);
-  //         }
-  //       } catch (error) {
-  //         console.error("Error updating geohash:", error);
-  //       }
+//         if (docSnapshot.exists()) {
+//           await updateDoc(docRef, { geohash: hashToStore });
+//           console.log("Geohash updated successfully for hospital:", id);
+//         } else {
+//           console.log("Hospital document not found:", id);
+//         }
+//       } catch (error) {
+//         console.error("Error updating geohash:", error);
+//       }
 
-  //       // Update the next hospital
-  //       await updateNextHospital(index + 1);
-  //     };
+//       // Update the next hospital
+//       await updateNextHospital(index + 1);
+//     };
 
-  //     // Start updating the first hospital
-  //     await updateNextHospital(0);
-  //   };
+//     // Start updating the first hospital
+//     await updateNextHospital(0);
+//   };
 
-  //   // setTimeout(() => {
-  //   updateGeohashForHospitals(hospitals);
-  //   // alert("please")
-  //   // }, 5000);
-  // }, []);
-  // console.log(hospitals)
+//   // setTimeout(() => {
+//   updateGeohashForHospitals(hospitals);
+//   // alert("please")
+//   // }, 5000);
+// }, []);
+// console.log(hospitals)

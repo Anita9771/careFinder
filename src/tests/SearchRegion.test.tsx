@@ -1,9 +1,16 @@
+import React from "react";
+import { mount } from "enzyme";
 import ReactDOM from "react-dom";
 import { SearchRegion } from "../pages";
 import Hospital from "../components/Hospital";
-import { mount } from "enzyme";
 import Pagination from "../components/Pagination";
 import { CirclesWithBar } from "react-loader-spinner";
+import Enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16"; // Update the path to the actual component file
+import {describe, expect } from '@jest/globals';
+import { Router } from "react-router-dom";
+
+Enzyme.configure({ adapter: new Adapter() });
 
 /*
 Code Analysis
@@ -34,43 +41,46 @@ Additional aspects:
 - The function uses the types/hospitals.ts file to define the NewHospitalType interface.
 */
 
-describe("SearchRegion_function", () => {
+describe("SearchRegion component", () => {
   // Tests that the component renders without crashing
-  it("test_rendering_without_crashing", () => {
+  it("should render without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<SearchRegion />, div);
+    ReactDOM.render(
+      <Router>
+    <SearchRegion />
+    </Router>, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
   // Tests that the component displays a list of hospitals
-  it("test_display_list_of_hospitals", () => {
+  it("should display a list of hospitals", () => {
     const wrapper = mount(<SearchRegion />);
-    expect(wrapper.find(Hospital)).toHaveLength(5);
+    expect(wrapper.find(Hospital)).toHaveLength(5); 
   });
 
   // Tests that the component filters hospitals based on searched region
-  it("test_filters_hospitals_based_on_searched_region", () => {
+  it("should filter hospitals based on searched region", () => {
     const wrapper = mount(<SearchRegion />);
     wrapper.setState({ searchedValue: "lagos" });
     expect(wrapper.find(Hospital)).toHaveLength(2);
   });
 
-  // Tests that the component displays pagination component
-  it("test_displays_pagination_component", () => {
+  // Tests that the component displays a pagination component
+  it("should display a pagination component", () => {
     const wrapper = mount(<SearchRegion />);
-    expect(wrapper.find(Pagination)).toHaveLength(1);
-  });
+    expect(wrapper.find(Pagination)).toHaveLength(1); 
 
   // Tests that the component displays a message when no hospitals are found
-  it("test_no_hospitals_found", () => {
+  it("should display 'No hospitals found' message", () => {
     const wrapper = mount(<SearchRegion />);
     wrapper.setState({ filteredHospitals: [] });
     expect(wrapper.find("h2").text()).toEqual("No hospitals found");
   });
 
   // Tests that the component displays a loading spinner when data is being fetched
-  it("test_loading_spinner_displayed_when_data_is_being_fetched", () => {
+  it("should display a loading spinner when data is being fetched", () => {
     const wrapper = mount(<SearchRegion />);
     expect(wrapper.find(CirclesWithBar)).toHaveLength(1);
   });
+});
 });
