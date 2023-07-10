@@ -37,7 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -62,8 +62,12 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.tsx?$"
+  },
   "devDependencies": {
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "jest": "^27.5.1"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "babel-plugin-macros.config.js",

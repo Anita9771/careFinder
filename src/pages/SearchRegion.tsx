@@ -30,7 +30,7 @@ function SearchRegion() {
     );
   }, [hospitals, searchedValue]);
 
-  let ITEMS_PER_PAGE = 10;
+  let ITEMS_PER_PAGE = 5;
 
   useEffect(() => {
     const unsubscribe = onSnapshot(hospitalsCol, (snapshot: QuerySnapshot<DocumentData>) => {
